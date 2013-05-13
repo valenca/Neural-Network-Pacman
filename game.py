@@ -52,6 +52,18 @@ class Directions:
              WEST: EAST,
              STOP: STOP}
 
+  NUMBER = {0:NORTH,
+            1:SOUTH,
+            2:EAST,
+            3:WEST,
+            4:STOP}
+
+  NUMBER2 = {0:NORTH,
+             1:EAST,
+             2:SOUTH,
+             3:WEST,
+             4:STOP}
+
 class Configuration:
   """
   A Configuration holds the (x,y) coordinate of a character, along with its

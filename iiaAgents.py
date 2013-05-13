@@ -14,9 +14,7 @@ Joao Valenca - 2010130607
 
 from pacman import Directions, SCARED_TIME, Actions
 from game import Agent
-import random
-import game
-import util
+from random import choice
 from util import getActionRepresentation, getStateRepresentation
 
 class iiaPacmanAgent(Agent):
@@ -60,7 +58,7 @@ class iiaPacmanAgent(Agent):
 		move = None
 		while move == None:
 			#self.keys = wait_for_keys()
-			move = self.getMove(state)
+			move = self.getMove(state, stateRepresentation)
 			if move == None:
 				print "Illegal move. Try again"
 		
@@ -69,287 +67,92 @@ class iiaPacmanAgent(Agent):
 		self.saveTraining([stateRepresentation, actionRepresentation])
 		return move
 
-	def getMove(self, state):
+	def getMove(self, state, stateRepresentation):
+		#Prioridades:
+			#Paredes
+			#Fantasmas Normais (fugir)
+			#Fantasmas Assustados (comer)
+			#Capsulas
+			#Pastilhas
 
-		#Decrementa o contador de efeito da capsula
-		if self.scaredCounter:
-			self.scaredCounter -= 1
+		#--- Exclui Paredes ---#
+		directions = state.getLegalActions()
+		#
 
-		#Se um fantasma tem o seu contador de assustado a SCARED_TIME entao o pacman acabou de comer uma capsula
-		if state.getNumAgents() > 1 and state.getGhostState(1).scaredTimer == SCARED_TIME-1:
-			self.scaredCounter = SCARED_TIME-1;
-
-
-		directions = state.getLegalPacmanActions()
+		#--- Exclui Paragem ---#
 		directions.remove(Directions.STOP)
+		#
 
-		#Se houver fantasmas normais nas esquinas, muda para a direcao oposta;
-		directions = hasGhostsOnCorner(state, directions)
-		print directions
+		#--- Exclui Fantasmas Normais ---#
+		for i in range(4):
+			#Linhas
+			if Directions.NUMBER[i] in directions:
+				if stateRepresentation[8+i*2] == 1 or stateRepresentation[8+i*2+1] == 1:
+					try:	 directions.remove(Directions.NUMBER[i])
+					finally: False
+			#Diagonais
+			if Directions.NUMBER2[i] in directions:
+				if stateRepresentation[8+8+i%4] == 1 or stateRepresentation[8+8+(i+1)%4] == 1:
+					try:	 directions.remove(Directions.NUMBER2[i])
+					finally: False
 
-		#Elimina caminhos com fantasmas normais a, no maximo, 2 casas;
-		withoutGhosts = hasNormalGhosts(state, 2, directions)
-		if len(withoutGhosts) == 1:
-			return withoutGhosts[0]
-		elif len(withoutGhosts) == 0:
-			if(state.getPacmanState().getDirection() in state.getLegalPacmanActions()):
-				return state.getPacmanState().getDirection()
-			else:
-				return random.choice(directions)
+		if len(directions) == 0:	return choice(state.getLegalActions())
+		elif len(directions) == 1:	return directions[0]
+		#
 
-		directions = withoutGhosts;
+		#--- Persegue Fantasmas Assustados ---#
+		sgDirections = []
 
+		for i in range(4):
+			#Linhas 1 casa
+			if Directions.NUMBER[i] in directions and Directions.NUMBER[i] not in sgDirections:
+				if stateRepresentation[8+i*2] == -1:
+					sgDirections.append(Directions.NUMBER[i])
 
-		#Se houver fantasma assustado, dirige-se a ele
-		withScaredGhosts = hasScaredGhosts(state, directions)
-		if len(withScaredGhosts) >= 1:
-			return random.choice(withScaredGhosts)
+		if len(sgDirections) > 0:	return choice(sgDirections)
+		
+		for i in range(4):
+			#Linhas 2 casas
+			if Directions.NUMBER[i] in directions and Directions.NUMBER[i] not in sgDirections:
+				if stateRepresentation[8+i*2+1] == -1:
+					sgDirections.append(Directions.NUMBER[i])
+			#Diagonais
+			if Directions.NUMBER2[i] in directions and Directions.NUMBER[i] not in sgDirections:
+				if stateRepresentation[8+8+i%4] == -1 or stateRepresentation[8+8+(i+1)%4] == -1:
+					sgDirections.append(Directions.NUMBER2[i])
 
+		if len(sgDirections) > 0:	return choice(sgDirections)
+		#
 
-		#Se nao estiver com o efeito de uma capsula
-		if not self.scaredCounter:
-			#Se houver capsula na linha de vista, dirige-se a ela;
-			withCapsules = hasNearCapsule(state, directions)
-			if len(withCapsules) >= 1:
-				return random.choice(withCapsules)
-
-
-		#Se continuar a existir mais que um caminho, escolhe o que tem a pastilha segura mais proxima;
-		withNearFood = hasNearFood(state, directions)
-		if len(withNearFood) == 1:
-			return withNearFood[0]
-		elif len(withNearFood) > 1:
-			return random.choice(withNearFood)
-
-		#Se so restar um caminho
-		if len(directions) == 1:
-			return directions[0]
-		#Se ainda continuar a existir mais que um caminho, escolhe aleatoriamente.
-		try:
-			directions.remove(Directions.REVERSE[state.getPacmanState().getDirection()])
-		finally:
-			return random.choice(directions)
-
-
-#Verifica se existe algum fantasma nas quatro diagonais de um quadrado de distancia
-#Se houver tira as duas direcoes coorrespondentes da lista legalPaths
-def hasGhostsOnCorner(state, directions):
-	legalPaths = directions[:]
-
-	xPac = state.getPacmanState().getPosition()[0]
-	yPac = state.getPacmanState().getPosition()[1]
-
-	#Acima esquerda
-	if (not state.hasWall(xPac - 1, yPac + 1)):
-		if hasGhost(state, xPac - 1, yPac + 0.5, 0) or hasGhost(state, xPac - 1, yPac + 1, 0) or hasGhost(state, xPac - 1, yPac + 1.5, 0):
-			if Directions.NORTH in legalPaths:
-				legalPaths.remove(Directions.NORTH)
-			if Directions.LEFT in legalPaths:
-				legalPaths.remove(Directions.LEFT)
-
-	#Acima direita
-	if (not state.hasWall(xPac + 1, yPac + 1)):
-		if hasGhost(state, xPac + 1, yPac + 0.5, 0) or hasGhost(state, xPac + 1, yPac + 1, 0) or hasGhost(state, xPac + 1, yPac + 1.5, 0):
-			if Directions.NORTH in legalPaths:
-				legalPaths.remove(Directions.NORTH)
-			if Directions.RIGHT in legalPaths:
-				legalPaths.remove(Directions.RIGHT)
-
-	#Abaixo esquerda
-	if (not state.hasWall(xPac - 1, yPac - 1)):
-		if hasGhost(state, xPac - 1, yPac - 0.5, 0) or hasGhost(state, xPac - 1, yPac - 1, 0) or hasGhost(state, xPac - 1, yPac - 1.5, 0):
-			if Directions.SOUTH in legalPaths:
-				legalPaths.remove(Directions.SOUTH)
-			if Directions.LEFT in legalPaths:
-				legalPaths.remove(Directions.LEFT)
-
-	#Abaixo direita
-	if (not state.hasWall(xPac + 1, yPac - 1)):
-		if hasGhost(state, xPac + 1, yPac - 0.5, 0) or hasGhost(state, xPac + 1, yPac - 1, 0) or hasGhost(state, xPac + 1, yPac - 1.5, 0):
-			if Directions.SOUTH in legalPaths:
-				legalPaths.remove(Directions.SOUTH)
-			if Directions.RIGHT in legalPaths:
-				legalPaths.remove(Directions.RIGHT)
-
-	return legalPaths
-
-#Verifica se um fantasma esta num beco
-def isGhostInAlley(state, ghost):
-	ghostP = ghost.getPosition()
-	if state.hasWall(int(ghostP[0]+0.5) + Actions._directions[Directions.LEFT[ghost.getDirection()]][0], int(ghostP[1]+0.5) + Actions._directions[Directions.LEFT[ghost.getDirection()]][1]):
-		if state.hasWall(int(ghostP[0]+0.5) + Actions._directions[ghost.getDirection()][0], int(ghostP[1]+0.5) + Actions._directions[ghost.getDirection()][1]):
-			if state.hasWall(int(ghostP[0]+0.5) + Actions._directions[Directions.RIGHT[ghost.getDirection()]][0], int(ghostP[1]+0.5) + Actions._directions[Directions.RIGHT[ghost.getDirection()]][1]):
-				return True
-	return False
-
-#Verifica se existe fantasmas normais a, no maximo 'ran' casas de distancia, para cada direcao
-def hasNormalGhosts(state, ran, directions):
-	legalPaths = directions[:]
-
-	xPac = state.getPacmanState().getPosition()[0]
-	yPac = state.getPacmanState().getPosition()[1]
-	
-	if Directions.NORTH in legalPaths:
-		ghost = isNSGhostInDirection(state, Actions._directions[Directions.NORTH], 0)
-		if ghost and (0 < (ghost[2] - yPac) <= ran):
-			if state.getGhostState(ghost[0]).getDirection() != Directions.NORTH:
-				legalPaths.remove(Directions.NORTH)
-			elif isGhostInAlley(state, state.getGhostState(ghost[0])):
-				legalPaths.remove(Directions.NORTH)
-
-	if Directions.SOUTH in legalPaths:
-		ghost = isNSGhostInDirection(state, Actions._directions[Directions.SOUTH], 0)
-		if ghost and (-ran <= (ghost[2] - yPac) < 0):
-			if state.getGhostState(ghost[0]).getDirection() != Directions.SOUTH:
-				legalPaths.remove(Directions.SOUTH)
-			elif isGhostInAlley(state, state.getGhostState(ghost[0])):
-				legalPaths.remove(Directions.SOUTH)
-
-	if Directions.EAST in legalPaths:
-		ghost = isNSGhostInDirection(state, Actions._directions[Directions.EAST], 0)
-		if ghost and (0 < (ghost[1] - xPac) <= ran):
-			if state.getGhostState(ghost[0]).getDirection() != Directions.EAST:
-				legalPaths.remove(Directions.EAST)
-			elif isGhostInAlley(state, state.getGhostState(ghost[0])):
-				legalPaths.remove(Directions.EAST)
-
-	if Directions.WEST in legalPaths:
-		ghost = isNSGhostInDirection(state, Actions._directions[Directions.WEST], 0)
-		if ghost and (-ran <= (ghost[1] - xPac) < 0):
-			if state.getGhostState(ghost[0]).getDirection() != Directions.WEST:
-				legalPaths.remove(Directions.WEST)
-			elif isGhostInAlley(state, state.getGhostState(ghost[0])):
-				legalPaths.remove(Directions.WEST)
-
-	return legalPaths
-
-#Devolve o indice e a posicao do primeiro fantasma encontrado numa direcao
-#Se nao encontrar devolve False
-def isNSGhostInDirection(state, inc, scared):
-	x = state.getPacmanState().getPosition()[0] + inc[0]/2.0
-	y = state.getPacmanState().getPosition()[1] + inc[1]/2.0
-
-	#Enquanto nao chegar a parede
-	while not state.hasWall(int(x), int(y)):
-		ghost = hasGhost(state, x, y, scared)
-		if ghost:
-			return (ghost, x, y)
-		x += inc[0]/2.0
-		y += inc[1]/2.0
-
-	return False
-
-#Dos caminhos disponiveis remove aqueles que nao tem fantasmas assustados e devolve os que tem
-def hasScaredGhosts(state, directions):
-	withScaredGhosts = directions[:]
-	for i in range(len(directions)):
-		if not isNSGhostInDirection(state, Actions._directions[directions[i]], 1):
-			withScaredGhosts.remove(directions[i])
-	return withScaredGhosts
-
-#Devolve o caminho, ou caminhos, com a capsula mais perto
-def hasNearCapsule(state, directions):
-	withNearCapsule = []
-	nearCapsule = -1
-	for i in range(len(directions)):
-		capsule = nearCapsuleInDirectionPacman(state, Actions._directions[directions[i]])
-		if capsule == nearCapsule:
-			withNearCapsule.append(directions[i])
-		elif capsule > 0 and (capsule < nearCapsule or nearCapsule == -1):
-			withNearCapsule = [directions[i]]
-			nearCapsule = capsule
-	return withNearCapsule
-
-#Devolve a distancia a uma capsula numa determinada direcao, devolve 0 se nao houver
-def nearCapsuleInDirectionPacman(state, inc):
-	ghost = isNSGhostInDirection(state, inc, 0)
-
-	x = state.getPacmanState().getPosition()[0] + inc[0]
-	y = state.getPacmanState().getPosition()[1] + inc[1]
-	capsule = 1
-
-	#Se o limite de procura for uma parede
-	if not ghost:
-		while not state.hasWall(x, y):
-			if (x, y) in state.getCapsules():
-				return capsule
-			x += inc[0]
-			y += inc[1]
-			capsule += 1
-	#Se o limite de procura for o meio caminho entre o pacman e um fantasma
-	else:
-		xPac = state.getPacmanState().getPosition()[0]
-		yPac = state.getPacmanState().getPosition()[1]
-		#Norte e Este
-		if inc[0] == 1 or inc[1] == 1:
-			while x <= ((ghost[0]-xPac-1)/2)+xPac and y <= ((ghost[1]-yPac-1)/2)+yPac:
-				if (x, y) in state.getCapsules():
-					return capsule
-				x += inc[0]
-				y += inc[1]
-				capsule += 1
-		#Sul e Oeste
+		#--- Persegue Capsulas ---#
+		if self.scaredCounter:		self.scaredCounter -= 1
 		else:
-			while x >= ((ghost[0]-xPac+1)/2)+xPac and y >= ((ghost[1]-yPac+1)/2)+yPac:
-				if (x, y) in state.getCapsules():
-					return capsule
-				x += inc[0]
-				y += inc[1]
-				capsule += 1
+			cDirections = []
 
-	return 0
+			for i in range(4):
+				if Directions.NUMBER[i] in directions and Directions.NUMBER[i] not in cDirections:
+					if stateRepresentation[i*2] == 1 and stateRepresentation[i*2+1] == 1:
+						cDirections.append(Directions.NUMBER[i])
 
-#Devolve o caminho, ou caminhos, com a pastilha mais perto
-def hasNearFood(state, directions):
-	withNearFood = []
-	nearFood = -1
-	for i in range(len(directions)):
-		food = nearFoodInDirection(state, Actions._directions[directions[i]])
-		if food == nearFood:
-			withNearFood.append(directions[i])
-		elif food > 0 and (food < nearFood or nearFood == -1):
-			withNearFood = [directions[i]]
-			nearFood = food
-	return withNearFood
+			if len(cDirections) > 0: return choice(cDirections)
+		#
 
-#Devolve a distancia a uma pastilha numa determinada direcao, devolve 0 se nao houver
-def nearFoodInDirection(state, inc):
-	ghost = isNSGhostInDirection(state, inc, 0)
+		#--- Persegue Pastilhas ---#
+		gDirections = []
 
-	x = state.getPacmanState().getPosition()[0] + inc[0]
-	y = state.getPacmanState().getPosition()[1] + inc[1]
-	food = 1
+		for i in range(4):
+			if Directions.NUMBER[i] in directions and Directions.NUMBER[i] not in gDirections:
+				if stateRepresentation[i*2] == 1 and stateRepresentation[i*2+1] == 0:
+					gDirections.append(Directions.NUMBER[i])
 
-	#Se o limite de procura for uma parede
-	if not ghost:
-		while not state.hasWall(x, y):
-			if state.hasFood(x, y):
-				return food
-			x += inc[0]
-			y += inc[1]
-			food += 1
-	#Se o limite de procura for o meio caminho entre o pacman e um fantasma
-	else:
-		xPac = state.getPacmanState().getPosition()[0]
-		yPac = state.getPacmanState().getPosition()[1]
-		#Norte e Este
-		if inc[0] == 1 or inc[1] == 1:
-			while x <= ((ghost[0]-xPac-1)/2)+xPac and y <= ((ghost[1]-yPac-1)/2)+yPac:
-				if state.hasFood(x, y):
-					return food
-				x += inc[0]
-				y += inc[1]
-				food += 1
-		#Sul e Oeste
-		else:
-			while x >= ((ghost[0]-xPac+1)/2)+xPac and y >= ((ghost[1]-yPac+1)/2)+yPac:
-				if state.hasFood(x, y):
-					return food
-				x += inc[0]
-				y += inc[1]
-				food += 1
+		if len(gDirections) > 0: return choice(gDirections)
+		#
 
-	return 0
+		try:	 directions.remove(Directions.REVERSE[state.getPacmanState().getDirection()])
+		finally: return choice(directions)
+
+
+
 
 class iiaGhostAgent(Agent):	 
   """Uses a strategy pattern to allow usage of different ghost behaviors in the game. 
