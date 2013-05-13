@@ -45,8 +45,8 @@ class iiaPacmanAgent(Agent):
 		except EOFError:
 			oldStuff = []
 		file = open(self.trainingName, 'w')
-#		print "Now saving:", oldStuff + [currentStuff]
-#		print "Adding:", currentStuff[0]
+		#print "Now saving:", oldStuff + [currentStuff]
+		#print "Adding:", currentStuff[0]
 		cPickle.dump(oldStuff + [currentStuff], file) 
 		file.close()
 
@@ -54,7 +54,7 @@ class iiaPacmanAgent(Agent):
 		#from graphicsUtils import wait_for_keys
 		legal = state.getLegalActions(self.index)
 		stateRepresentation = getStateRepresentation(state)
-		print "State Representation:", stateRepresentation
+		#print "State Representation:", stateRepresentation
 		move = None
 		while move == None:
 			#self.keys = wait_for_keys()
@@ -63,7 +63,7 @@ class iiaPacmanAgent(Agent):
 				print "Illegal move. Try again"
 		
 		actionRepresentation = getActionRepresentation(move)
-		print "Action Representation:", actionRepresentation
+		#print "Action Representation:", actionRepresentation
 		self.saveTraining([stateRepresentation, actionRepresentation])
 		return move
 
