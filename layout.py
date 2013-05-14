@@ -29,7 +29,7 @@ class Layout:
     self.processLayoutText(layoutText)
     self.layoutText = layoutText
     # self.initializeVisibilityMatrix()
-    
+
   def getNumGhosts(self):
     return self.numGhosts
     
@@ -127,6 +127,8 @@ def getLayout(name, back = 1):
   # setups
   layoutDir = ''
   layoutName = name.strip() if name.endswith('.lay') else name.strip() + '.lay'
+  global lName
+  lName = layoutName[:-4]
   
   if os.path.isdir('layouts/'):
     layoutDir = 'layouts/'

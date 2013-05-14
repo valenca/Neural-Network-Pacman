@@ -13,6 +13,7 @@ Joao Valenca - 2010130607
 """
 
 from pacman import Directions, SCARED_TIME, Actions
+import layout
 from game import Agent
 from random import choice
 from util import getActionRepresentation, getStateRepresentation
@@ -32,9 +33,9 @@ class iiaPacmanAgent(Agent):
 		import os.path
 		name = "training_"
 		count = 1
-		while os.path.isfile("training/" + name + str(count) + ".iia"):
+		while os.path.isfile("training/reactive/" + layout.lName + "/" + "default" + "/" + name + str(count) + ".iia"):
 			count += 1
-		return "training/" + name + str(count) + ".iia"
+		return "training/reactive/" + layout.lName + "/" + "default" + "/" + name + str(count) + ".iia"
   
 	def saveTraining(self, currentStuff):
 		import cPickle
@@ -151,9 +152,6 @@ class iiaPacmanAgent(Agent):
 		try:	 directions.remove(Directions.REVERSE[state.getPacmanState().getDirection()])
 		finally: return choice(directions)
 
-
-
-
 class iiaGhostAgent(Agent):	 
   """Uses a strategy pattern to allow usage of different ghost behaviors in the game. 
   The strategy must receive an agent and a GameState as the arguments.
@@ -182,31 +180,31 @@ class iiaGhostAgent(Agent):
   
 
 def default(agent,state):
-    return random.choice(state.getLegalActions(agent.index))
+    return choice(state.getLegalActions(agent.index))
 
 def gowest(agent,state):
     if Directions.WEST in state.getLegalActions(agent.index):
       return Directions.WEST
     else:
-      return random.choice(state.getLegalActions(agent.index))
+      return choice(state.getLegalActions(agent.index))
 
 def gonorth(agent,state):
     if Directions.NORTH in state.getLegalActions(agent.index):
       return Directions.NORTH
     else:
-      return random.choice(state.getLegalActions(agent.index))
+      return choice(state.getLegalActions(agent.index))
 
 def goeast(agent,state):
     if Directions.EAST in state.getLegalActions(agent.index):
       return Directions.EAST
     else:
-      return random.choice(state.getLegalActions(agent.index))
+      return choice(state.getLegalActions(agent.index))
 
 def gosouth(agent,state):
     if Directions.SOUTH in state.getLegalActions(agent.index):
       return Directions.SOUTH
     else:
-      return random.choice(state.getLegalActions(agent.index))
+      return choice(state.getLegalActions(agent.index))
 
 #Fantasma Chaser
 def chaser(agent,state,fearful=False,directions=False):
@@ -217,14 +215,14 @@ def chaser(agent,state,fearful=False,directions=False):
 	#Se vir o pacman nas diagonais, segue-o
 	withPacman = hasPacmanOnCorners(agent, state, directions)
 	if len(withPacman) >= 1:
-		return random.choice(withPacman)
+		return choice(withPacman)
 
 	#Se vir o pacman numa direcao, segue-o
 	withPacman = hasPacmanGhost(agent, state, directions)
 	if len(withPacman) == 1:
 		return withPacman[0]
 
-	return random.choice(directions)
+	return choice(directions)
 
 #Fantasma Fearful/Ambusher
 def fearful(agent,state):
@@ -251,8 +249,8 @@ def fearful(agent,state):
 				withoutPacman.remove(i)
 
 		if len(withoutPacman) >= 1:
-			return random.choice(withoutPacman)
-		return random.choice(directions)
+			return choice(withoutPacman)
+		return choice(directions)
 
 	#Se nao tiver assustado comporta-se como o Chaser
 	return chaser(agent, state, 1, directions)
@@ -459,7 +457,7 @@ def chooseDirection(agent, state, directions):
 			if Directions.WEST in directions:
 				return Directions.WEST
 
-	return random.choice(directions)
+	return choice(directions)
 
 #Verifica se existe um Fantasma (assustado ou nao) numa determinada posicao
 def hasGhost(state, x, y, scared):
