@@ -1,0 +1,89 @@
+.
+├── layouts
+├── network
+└── training
+    ├── human
+    │   ├── contestClassic
+    │   │   ├── all
+    │   │   ├── chaser
+    │   │   ├── default
+    │   │   ├── fearful
+    │   │   └── guardian
+    │   ├── mediumClassic
+    │   │   ├── all
+    │   │   ├── chaser
+    │   │   ├── default
+    │   │   ├── fearful
+    │   │   └── guardian
+    │   ├── openClassic
+    │   │   ├── all
+    │   │   ├── chaser
+    │   │   ├── default
+    │   │   ├── fearful
+    │   │   └── guardian
+    │   ├── originalClassic
+    │   │   ├── all
+    │   │   ├── chaser
+    │   │   ├── default
+    │   │   ├── fearful
+    │   │   └── guardian
+    │   ├── smallClassic
+    │   │   ├── all
+    │   │   ├── chaser
+    │   │   ├── default
+    │   │   ├── fearful
+    │   │   └── guardian
+    │   ├── testClassic
+    │   │   ├── chaser
+    │   │   ├── default
+    │   │   ├── fearful
+    │   │   └── guardian
+    │   └── trickyClassic
+    │       ├── all
+    │       ├── chaser
+    │       ├── default
+    │       ├── fearful
+    │       └── guardian
+    └── reactive
+        ├── contestClassic
+        │   ├── all
+        │   ├── chaser
+        │   ├── default
+        │   ├── fearful
+        │   └── guardian
+        ├── mediumClassic
+        │   ├── all
+        │   ├── chaser
+        │   ├── default
+        │   ├── fearful
+        │   └── guardian
+        ├── openClassic
+        │   ├── chaser
+        │   ├── default
+        │   ├── fearful
+        │   └── guardian
+        ├── originalClassic
+        │   ├── all
+        │   ├── chaser
+        │   ├── default
+        │   ├── fearful
+        │   └── guardian
+        ├── smallClassic
+        │   ├── all
+        │   ├── chaser
+        │   ├── default
+        │   ├── fearful
+        │   └── guardian
+        ├── testClassic
+        │   ├── chaser
+        │   ├── default
+        │   ├── fearful
+        │   └── guardian
+        └── trickyClassic
+            ├── all
+            ├── chaser
+            ├── default
+            ├── fearful
+            └── guardian
+
+86 directories
