@@ -33,9 +33,9 @@ class iiaPacmanAgent(Agent):
 		import os.path
 		name = "training_"
 		count = 1
-		while os.path.isfile("training/reactive/" + layout.lName + "/" + "default" + "/" + name + str(count) + ".iia"):
+		while os.path.isfile("training/reactive/" + layout.lName + "/" + ghostN + "/" + name + str(count) + ".iia"):
 			count += 1
-		return "training/reactive/" + layout.lName + "/" + "default" + "/" + name + str(count) + ".iia"
+		return "training/reactive/" + layout.lName + "/" + ghostN + "/" + name + str(count) + ".iia"
   
 	def saveTraining(self, currentStuff):
 		import cPickle
@@ -168,6 +168,8 @@ class iiaGhostAgent(Agent):
     self.index=index
     self.xCapsule = self.yCapsule = -1
     strategies = fnStrategy.split(';')
+    global ghostN
+    ghostN = "all" if len(strategies) > 1 else strategies[0]
     try:
       self.strategy = util.lookup(strategies[index%len(strategies)], globals())
     except:

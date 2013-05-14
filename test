@@ -1,100 +1,29 @@
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
-python2 pacman.py --layout trickyClassic -p iiaPacmanAgent -q -g iiaGhostAgent --ghostArgs fnStrategy='default'
+for ((i = 0; i < 100; i++))
+do
+	python2 pacman.py -l openClassic.lay -q -g iiaGhostAgent --ghostArgs fnStrategy='guardian' -p iiaPacmanAgent
+done
+for ((i = 0; i < 100; i++))
+do
+	python2 pacman.py -l openClassic.lay -q -g iiaGhostAgent --ghostArgs fnStrategy='default' -p iiaPacmanAgent
+done
+for ((i = 0; i < 100; i++))
+do
+	python2 pacman.py -l openClassic.lay -q -g iiaGhostAgent --ghostArgs fnStrategy='fearful' -p iiaPacmanAgent
+done
+
+for ((i = 0; i < 100; i++))
+do
+	python2 pacman.py -l originalClassic.lay -q -g iiaGhostAgent --ghostArgs fnStrategy='chaser' -p iiaPacmanAgent
+done
+for ((i = 0; i < 100; i++))
+do
+	python2 pacman.py -l originalClassic.lay -q -g iiaGhostAgent --ghostArgs fnStrategy='default' -p iiaPacmanAgent
+done
+for ((i = 0; i < 100; i++))
+do
+	python2 pacman.py -l originalClassic.lay -q -g iiaGhostAgent --ghostArgs fnStrategy='fearful' -p iiaPacmanAgent
+done
+for ((i = 0; i < 100; i++))
+do
+	python2 pacman.py -l originalClassic.lay -q -g iiaGhostAgent --ghostArgs fnStrategy='guardian' -p iiaPacmanAgent
+done

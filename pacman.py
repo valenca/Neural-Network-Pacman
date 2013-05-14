@@ -536,6 +536,13 @@ def readCommand( argv ):
 
   # Choose a Pacman agent
   noKeyboard = options.gameToReplay == None and (options.textGraphics or options.quietGraphics)
+  
+  # Choose a ghost agent
+  ghostType = loadAgent(options.ghost, noKeyboard)
+  #RL: Added args to ghost agent
+  ghostOpts = parseAgentArgs(options.ghostArgs)
+  args['ghosts'] = [ghostType( i+1, **ghostOpts ) for i in range( options.numGhosts )]
+
   pacmanType = loadAgent(options.pacman, noKeyboard)
   agentOpts = parseAgentArgs(options.agentArgs)
   if options.numTraining > 0:
@@ -549,11 +556,6 @@ def readCommand( argv ):
     options.numQuiet = int(agentOpts['numTrain'])
     options.numIgnore = int(agentOpts['numTrain'])
 
-  # Choose a ghost agent
-  ghostType = loadAgent(options.ghost, noKeyboard)
-  #RL: Added args to ghost agent
-  ghostOpts = parseAgentArgs(options.ghostArgs)
-  args['ghosts'] = [ghostType( i+1, **ghostOpts ) for i in range( options.numGhosts )]
 
   # Choose a display format
   if options.quietGraphics:
