@@ -1,0 +1,166 @@
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l contestClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser;fearful;guardian' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l contestClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l contestClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='fearful' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l contestClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='guardian' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l contestClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='default' -p LearningKeyboardAgent
+done
+
+
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l mediumClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser;fearful;guardian' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l mediumClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l mediumClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='fearful' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l mediumClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='guardian' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l mediumClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='default' -p LearningKeyboardAgent
+done
+
+
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l minimaxClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser;fearful;guardian' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l minimaxClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l minimaxClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='fearful' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l minimaxClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='guardian' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l minimaxClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='default' -p LearningKeyboardAgent
+done
+
+
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l openClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l openClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='fearful' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l openClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='guardian' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l openClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='default' -p LearningKeyboardAgent
+done
+
+
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser;fearful;guardian;default' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='fearful' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='guardian' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='default' -p LearningKeyboardAgent
+done
+
+
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l smallClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='fearful;guardian' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l smallClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l smallClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='fearful' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l smallClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='guardian' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l smallClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='default' -p LearningKeyboardAgent
+done
+
+
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l testClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l testClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='fearful' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l testClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='guardian' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l testClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='default' -p LearningKeyboardAgent
+done
+
+
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l trickyClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser;fearful;guardian;default' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l trickyClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l trickyClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='fearful' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l trickyClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='guardian' -p LearningKeyboardAgent
+done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l trickyClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='default' -p LearningKeyboardAgent
+done
