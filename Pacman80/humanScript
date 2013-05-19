@@ -90,14 +90,14 @@
 #do
 #python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser' -p LearningKeyboardAgent -z 0.75
 #done
-for ((i = 0; i < 10; i++))
-do
-python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='fearful' -p LearningKeyboardAgent
-done
 #for ((i = 0; i < 10; i++))
 #do
-#python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='guardian' -p LearningKeyboardAgent
+#python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='fearful' -p LearningKeyboardAgent
 #done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='guardian' -p LearningKeyboardAgent
+done
 #for ((i = 0; i < 10; i++))
 #do
 #python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='default' -p LearningKeyboardAgent
