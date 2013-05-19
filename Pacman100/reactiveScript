@@ -1,4 +1,0 @@
-for ((i = 0; i < 150; i++))
-do
-python2 pacman.py -l mediumClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser;fearful;guardian' -p iiaPacmanAgent -q
-done

@@ -296,21 +296,24 @@ class ClassicGameRules:
     game.gameOver = True
 
     import cPickle, iiaAgents, keyboardAgents
+
     try:
-      try:
-        file = open(iiaAgents.trainingN, 'r')
-      except:
-        file = open(keyboardAgents.trainingN, 'r')
-      oldStuff = cPickle.load(file)
-      file.close()
-    except EOFError:
-      oldStuff = []
-    try:
-      file = open(iiaAgents.trainingN, 'w')
+      tN = iiaAgents.trainingN
     except:
-      file = open(keyboardAgents.trainingN, 'w')
-    cPickle.dump([state.data.score] + oldStuff, file) 
-    file.close()
+      tN = keyboardAgents.trainingN
+
+    if state.data.score <= 0:
+      os.remove(tN)
+    else:
+      try:
+        file = open(tN, 'r')
+        oldStuff = cPickle.load(file)
+        file.close()
+      except EOFError:
+        oldStuff = []
+      file = open(tN, 'w')
+      cPickle.dump([state.data.score] + oldStuff, file) 
+      file.close()
 
 
 
@@ -321,21 +324,24 @@ class ClassicGameRules:
     game.gameOver = True
 
     import cPickle, iiaAgents, keyboardAgents
+
     try:
-      try:
-        file = open(iiaAgents.trainingN, 'r')
-      except:
-        file = open(keyboardAgents.trainingN, 'r')
-      oldStuff = cPickle.load(file)
-      file.close()
-    except EOFError:
-      oldStuff = []
-    try:
-      file = open(iiaAgents.trainingN, 'w')
+      tN = iiaAgents.trainingN
     except:
-      file = open(keyboardAgents.trainingN, 'w')
-    cPickle.dump([state.data.score] + oldStuff, file) 
-    file.close()
+      tN = keyboardAgents.trainingN
+
+    if state.data.score <= 0:
+      os.remove(tN)
+    else:
+      try:
+        file = open(tN, 'r')
+        oldStuff = cPickle.load(file)
+        file.close()
+      except EOFError:
+        oldStuff = []
+      file = open(tN, 'w')
+      cPickle.dump([state.data.score] + oldStuff, file) 
+      file.close()
 
 
 
