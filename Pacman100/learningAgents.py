@@ -111,7 +111,7 @@ class NeuralNetworkAgent(Agent):
 			for i in ["human", "reactive"]:
 				for j in ["contest"+c, "medium"+c, "small"+c, "test"+c, "tricky"+c]:
 					for k in ["all", "chaser", "guardian", "fearful", "default"]:
-						directory = "training/reactive/" + j + "/" + k
+						directory = "training/" + i + "/" + j + "/" + k
 						if os.path.isdir(directory):
 							for l in range(len(os.listdir(directory))):
 								fileNames.append(directory + "/training_" + str(l+1) + ".iia")
@@ -120,11 +120,11 @@ class NeuralNetworkAgent(Agent):
 			#--- Criacao e inicializacao da rede neuronal ---#
 			self.initialization()
 			#
-
+			print fileNames
 			#--- Treino da rede neuronal ---#
 			files = loadFilesFromList(fileNames)
 			for file in files:
-				for case in file:
+				for case in file[1:]:
 					self.trainNeuralNetwork(case)
 			#
 

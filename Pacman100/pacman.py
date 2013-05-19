@@ -11,6 +11,13 @@
 # Copyright (c) 2012 University of Coimbra. All rights reserved.
 
 """
+Alterado por
+Alexandre Jesus - 2010130268
+Gustavo Martins - 2010131414
+Joao Valenca - 2010130607
+"""
+
+"""
 Pacman.py holds the logic for the classic pacman game along with the main
 code to run a game.  This file is divided into three sections:
 
@@ -288,9 +295,50 @@ class ClassicGameRules:
     if not self.quiet: print "Pacman emerges victorious! Score: %d" % state.data.score
     game.gameOver = True
 
+    import cPickle, iiaAgents, keyboardAgents
+    try:
+      try:
+        file = open(iiaAgents.trainingN, 'r')
+      except:
+        file = open(keyboardAgents.trainingN, 'r')
+      oldStuff = cPickle.load(file)
+      file.close()
+    except EOFError:
+      oldStuff = []
+    try:
+      file = open(iiaAgents.trainingN, 'w')
+    except:
+      file = open(keyboardAgents.trainingN, 'w')
+    cPickle.dump([state.data.score] + oldStuff, file) 
+    file.close()
+
+
+
+
+
   def lose( self, state, game ):
     if not self.quiet: print "Pacman died! Score: %d" % state.data.score
     game.gameOver = True
+
+    import cPickle, iiaAgents, keyboardAgents
+    try:
+      try:
+        file = open(iiaAgents.trainingN, 'r')
+      except:
+        file = open(keyboardAgents.trainingN, 'r')
+      oldStuff = cPickle.load(file)
+      file.close()
+    except EOFError:
+      oldStuff = []
+    try:
+      file = open(iiaAgents.trainingN, 'w')
+    except:
+      file = open(keyboardAgents.trainingN, 'w')
+    cPickle.dump([state.data.score] + oldStuff, file) 
+    file.close()
+
+
+
 
   def getProgress(self, game):
     return float(game.state.getNumFood()) / self.initialState.getNumFood()

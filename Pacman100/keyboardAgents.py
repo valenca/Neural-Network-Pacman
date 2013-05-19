@@ -94,6 +94,10 @@ class LearningKeyboardAgent(Agent):
 	self.index = index
 	self.keys = []
 	self.trainingName = self.getTrainingName()
+
+	global trainingN
+	trainingN = self.trainingName
+
 	print "Training name:", self.trainingName
 	file = open(self.trainingName, 'w')
 	file.close()
