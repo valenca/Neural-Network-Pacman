@@ -6,6 +6,13 @@
 # John DeNero (denero@cs.berkeley.edu) and Dan Klein (klein@cs.berkeley.edu).
 # For more info, see http://inst.eecs.berkeley.edu/~cs188/sp09/pacman.html
 
+"""
+Alterado por
+Alexandre Jesus - 2010130268
+Gustavo Martins - 2010131414
+Joao Valenca - 2010130607
+"""
+
 from util import *
 import time, os
 import traceback
@@ -51,6 +58,18 @@ class Directions:
              EAST: WEST,
              WEST: EAST,
              STOP: STOP}
+
+  NUMBER = {0: NORTH,
+            1: SOUTH,
+            2: EAST,
+            3: WEST,
+            4: STOP}
+
+  NUMBER2 = {0: NORTH,
+             1: EAST,
+             2: SOUTH,
+             3: WEST,
+             4: STOP}
 
 class Configuration:
   """
