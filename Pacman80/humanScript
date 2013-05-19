@@ -98,10 +98,10 @@ for ((i = 0; i < 10; i++))
 do
 python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='guardian' -p LearningKeyboardAgent
 done
-#for ((i = 0; i < 10; i++))
-#do
-#python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='default' -p LearningKeyboardAgent
-#done
+for ((i = 0; i < 10; i++))
+do
+python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='default' -p LearningKeyboardAgent
+done
 #
 #
 #for ((i = 0; i < 10; i++))
