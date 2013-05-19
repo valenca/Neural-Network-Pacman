@@ -3,10 +3,18 @@ Created by John DeNero et al.
 Copyright (c) 2009 University of Berkley. All rights reserved.
 http://inst.eecs.berkeley.edu/~cs188/sp09/pacman.html
 """
+
+"""
+Alterado por
+Alexandre Jesus - 2010130268
+Gustavo Martins - 2010131414
+Joao Valenca - 2010130607
+"""
+
 from game import Agent, Directions
 from random import choice
 from util import getActionRepresentation, getStateRepresentation
-import random
+import random, layout, iiaAgents
 
 class KeyboardAgent(Agent):
   """
@@ -94,9 +102,9 @@ class LearningKeyboardAgent(Agent):
 	  import os.path
 	  name = "training_"
 	  count = 1
-	  while os.path.isfile(name + str(count) + ".iia"):
+	  while os.path.isfile("training/human/mediumClassic/all/" + name + str(count) + ".iia"):
 		  count += 1
-	  return name + str(count) + ".iia"
+	  return "training/human/mediumClassic/all/" + name + str(count) + ".iia"
   
   def saveTraining(self, currentStuff):
 	  import cPickle

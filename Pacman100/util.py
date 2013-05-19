@@ -6,6 +6,13 @@
 # John DeNero (denero@cs.berkeley.edu) and Dan Klein (klein@cs.berkeley.edu).
 # For more info, see http://inst.eecs.berkeley.edu/~cs188/sp09/pacman.html
 
+"""
+Alterado por
+Alexandre Jesus - 2010130268
+Gustavo Martins - 2010131414
+Joao Valenca - 2010130607
+"""
+
 import sys
 import inspect
 import heapq, random
@@ -13,7 +20,6 @@ import cPickle
 import inspect
 import os.path
 import random
-
 
 def loadFilesUntil(lastNumber):
     
@@ -67,101 +73,103 @@ def getActionRepresentation(output):
 
 
 def getStateRepresentation(state):
+    from game import Directions
+    import layout
+    width = 20
+    height = 11
     
     result = []
-    pacmanPosition = state.getPacmanPosition()
-    pacmanX = pacmanPosition[0]
-    pacmanY = pacmanPosition[1]
-    allSides = [[0, 1], [0, -1], [1, 0], [-1, 0]]
     capsules = state.getCapsules()
-    for side in allSides:
-        
-        currentX = pacmanX + side[0]
-        currentY = pacmanY + side[1]
-        if state.hasWall(currentX, currentY):
-            result.append(0)
-            result.append(0)
-        # no wall
-        else:
-            if state.hasFood(currentX, currentY):
-                result.append(1)
-                result.append(0)
-            elif (currentX, currentY) in capsules:
-                result.append(1)
-                result.append(1)
-            else:
-                result.append(0)
-                result.append(1)
-    
+
+    for y in range(height):
+      for x in range(width):
+        if state.hasWall(x, y): #Parede
+          result.append(0)
+          result.append(0)
+        elif state.hasFood(x, y): #Pastilha
+          result.append(1)
+          result.append(0)
+        elif (x, y) in capsules: #Capsula
+          result.append(1)
+          result.append(1)
+        else: #Vazio
+          result.append(0)
+          result.append(1)
+
+
+    pacmanPosition = state.getPacmanPosition()
     ghostStates = state.getGhostStates()
     ghostsScaredTimers = []
     ghostsPositions = []
-    
+
     for ghost in ghostStates:
         oldPosition = ghost.getPosition()
         ghostsPositions.append([int(oldPosition[0]), int(oldPosition[1])])
         ghostsScaredTimers.append(ghost.scaredTimer)
-    
-    for side in allSides:
-        
-        currentX = pacmanX + side[0]
-        currentY = pacmanY + side[1]
-        
-        if state.hasWall(currentX, currentY):
+
+    for y in range(height):
+      for x in range(width):
+        if (x, y) == pacmanPosition:
+          result.append(1)
+          result.append(1)
+          if(state.getPacmanState().getDirection() == Directions.NUMBER[0]):
             result.append(0)
             result.append(0)
+          elif(state.getPacmanState().getDirection() == Directions.NUMBER[1]):
+            result.append(0)
+            result.append(1)
+          elif(state.getPacmanState().getDirection() == Directions.NUMBER[2]):
+            result.append(1)
+            result.append(0)
+          elif(state.getPacmanState().getDirection() == Directions.NUMBER[3]):
+            result.append(1)
+            result.append(1)
+          else:
+            result.append(-1)
+            result.append(-1)
         else:
-            toAdd = 0
-            for i, ghostPosition in enumerate(ghostsPositions):
-                
-                if currentX == ghostPosition[0] and currentY == ghostPosition[1]:
-                    if ghostsScaredTimers[i] > 0:
-                        toAdd = -1
-                    else:
-                        if toAdd != -1:
-                            toAdd = 1
-            result.append(toAdd)
-            
-            currentX = pacmanX + 2*side[0]
-            currentY = pacmanY + 2*side[1]
+          toAdd1 = 0
+          toAdd2 = 0
+          toAddD1 = -1;
+          toAddD2 = -1;
+          for i, ghostPosition in enumerate(ghostsPositions):
+            if x == ghostPosition[0] and y == ghostPosition[1]:
+              if ghostsScaredTimers[i] > 0:
+                toAdd1 = 0
+                toAdd2 = 1
+                if(state.getGhostState(i+1).getDirection() == Directions.NUMBER[0]):
+                  toAddD1 = 0;
+                  toAddD2 = 0;
+                elif(state.getGhostState(i+1).getDirection() == Directions.NUMBER[1]):
+                  toAddD1 = 0;
+                  toAddD2 = 1;
+                elif(state.getGhostState(i+1).getDirection() == Directions.NUMBER[2]):
+                  toAddD1 = 1;
+                  toAddD2 = 0;
+                elif(state.getGhostState(i+1).getDirection() == Directions.NUMBER[3]):
+                  toAddD1 = 1;
+                  toAddD2 = 1;
+              else:
+                toAdd1 = 1
+                toAdd2 = 0
+                if(state.getGhostState(i+1).getDirection() == Directions.NUMBER[0]):
+                  toAddD1 = 0;
+                  toAddD2 = 0;
+                elif(state.getGhostState(i+1).getDirection() == Directions.NUMBER[1]):
+                  toAddD1 = 0;
+                  toAddD2 = 1;
+                elif(state.getGhostState(i+1).getDirection() == Directions.NUMBER[2]):
+                  toAddD1 = 1;
+                  toAddD2 = 0;
+                elif(state.getGhostState(i+1).getDirection() == Directions.NUMBER[3]):
+                  toAddD1 = 1;
+                  toAddD2 = 1;
+                break;
+          result.append(toAdd1)
+          result.append(toAdd2)
+          result.append(toAddD1)
+          result.append(toAddD2)
         
-            if state.hasWall(currentX, currentY):
-                result.append(0)
-            else:
-                toAdd = 0
-                for i, ghostPosition in enumerate(ghostsPositions):
-                    
-                    if currentX == ghostPosition[0] and currentY == ghostPosition[1]:
-                        if ghostsScaredTimers[i] > 0:
-                            toAdd = -1
-                        else:
-                            if toAdd != -1:
-                                toAdd = 1
-                result.append(toAdd)
-        
-    corners = [[-1, 1], [1, 1], [1, -1], [-1, -1]]
-    
-    for corner in corners:
-        currentX = pacmanX + corner[0]
-        currentY = pacmanY + corner[1]
-        
-        if state.hasWall(currentX, currentY):
-            result.append(0)
-        else:
-            toAdd = 0
-            for i, ghostPosition in enumerate(ghostsPositions):
-                
-                if currentX == ghostPosition[0] and currentY == ghostPosition[1]:
-                    if ghostsScaredTimers[i] > 0:
-                        toAdd = -1
-                    else:
-                        if toAdd != -1:
-                            toAdd = 1
-            result.append(toAdd)
-    
-    if len(result) != 20:
-        print "?????????"
-#    print "Result:", result[8:]
     return result
 
 
