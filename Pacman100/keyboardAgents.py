@@ -124,7 +124,7 @@ class LearningKeyboardAgent(Agent):
 	from graphicsUtils import wait_for_keys
 	legal = state.getLegalActions(self.index)
 	stateRepresentation = getStateRepresentation(state)
-	print "State Representation:", stateRepresentation
+	#print "State Representation:", stateRepresentation
 	move = None
 	while move == None:
 		self.keys = wait_for_keys()
@@ -133,7 +133,7 @@ class LearningKeyboardAgent(Agent):
 			print "Illegal move. Try again"
 	
 	actionRepresentation = getActionRepresentation(move)
-	print "Action Representation:", actionRepresentation
+	#print "Action Representation:", actionRepresentation
 	self.saveTraining([stateRepresentation, actionRepresentation])
 	return move
 
