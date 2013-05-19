@@ -96,8 +96,8 @@ class NeuralNetworkAgent(Agent):
 		import cPickle, os
 
 		#--- Se a rede ja estiver criada, apenas le os dados ---#
-		if os.path.isfile("network/network80.iia"):
-			file = open("network/network80.iia", 'r')
+		if os.path.isfile("network/network_r_3800_0.1.iia"):
+			file = open("network/network_r_3800_0.1.iia", 'r')
 			content = cPickle.load(file)
 			self.neurons = content[0]
 			self.weights = content[1]
@@ -109,9 +109,9 @@ class NeuralNetworkAgent(Agent):
 			fileNames = []
 			c = "Classic"
 			for i in ["human", "reactive"]:
-				for j in ["contest"+c, "medium"+c, "small"+c, "test"+c, "tricky"+c]:
+				for j in ["contest"+c, "medium"+c, "minimax"+c, "open"+c, "original"+c, "small"+c, "test"+c, "tricky"+c]:
 					for k in ["all", "chaser", "guardian", "fearful", "default"]:
-						directory = "training/reactive/" + j + "/" + k
+						directory = "training/" + i + "/" + j + "/" + k
 						if os.path.isdir(directory):
 							for l in range(len(os.listdir(directory))):
 								fileNames.append(directory + "/training_" + str(l+1) + ".iia")
@@ -129,7 +129,7 @@ class NeuralNetworkAgent(Agent):
 			#
 
 			#--- Guarda rede neuronal em ficheiro ---#
-			file = open("network/network80.iia", 'w')
+			file = open("network/network_r_3800_0.1.iia", 'w')
 			cPickle.dump([self.neurons, self.weights], file) 
 			file.close()
 			#
