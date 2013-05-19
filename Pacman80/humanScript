@@ -1,4 +1,4 @@
-for ((i = 0; i < 10; i++))
+#for ((i = 0; i < 10; i++))
 do
 python2 pacman.py -l contestClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser;fearful;guardian' -p LearningKeyboardAgent
 done
@@ -88,7 +88,7 @@ python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy
 done
 for ((i = 0; i < 10; i++))
 do
-python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser' -p LearningKeyboardAgent
+python2 pacman.py -l originalClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='chaser' -p LearningKeyboardAgent 
 done
 for ((i = 0; i < 10; i++))
 do
@@ -164,3 +164,4 @@ for ((i = 0; i < 10; i++))
 do
 python2 pacman.py -l trickyClassic.lay -g iiaGhostAgent --ghostArgs fnStrategy='default' -p LearningKeyboardAgent
 done
+
