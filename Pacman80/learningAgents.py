@@ -97,7 +97,7 @@ class NeuralNetworkAgent(Agent):
 
 		#--- Se a rede ja estiver criada, apenas le os dados ---#
 		if os.path.isfile("network/network_r_3800_0.1.iia"):
-			file = open("network/network_r_3800_0.1.iia", 'r')
+			file = open("network/network_hr_4940_0.1.iia", 'r')
 			content = cPickle.load(file)
 			self.neurons = content[0]
 			self.weights = content[1]
@@ -129,7 +129,7 @@ class NeuralNetworkAgent(Agent):
 			#
 
 			#--- Guarda rede neuronal em ficheiro ---#
-			file = open("network/network_r_3800_0.1.iia", 'w')
+			file = open("network/network_hr_4940_0.1.iia", 'w')
 			cPickle.dump([self.neurons, self.weights], file) 
 			file.close()
 			#
@@ -152,6 +152,26 @@ class NeuralNetworkAgent(Agent):
 
 		return self.neurons[len(self.nNeurons)-1]
 
+	def getDirection(self, state, actions):
+		pacmanPos = state.getPacmanPosition();
+
+		while True:
+
+			randNumber = random() * sum(actions[:-1])
+
+			if(randNumber >= 0 and randNumber < actions[0]):
+				if not state.hasWall(pacmanPos[0], pacmanPos[1]+1):
+					return Directions.NORTH
+			elif(randNumber >= actions[0] and randNumber < sum(actions[0:2])):
+				if not state.hasWall(pacmanPos[0], pacmanPos[1]-1):
+					return Directions.SOUTH
+			elif(randNumber >= sum(actions[0:2]) and randNumber < sum(actions[0:3])):
+				if not state.hasWall(pacmanPos[0]+1, pacmanPos[1]):
+					return Directions.EAST
+			elif(randNumber >= sum(actions[0:3]) and randNumber < sum(actions[0:4])):
+				if not state.hasWall(pacmanPos[0]-1, pacmanPos[1]):
+					return Directions.WEST
+
 
 	def getAction(self, state):
 
@@ -159,6 +179,7 @@ class NeuralNetworkAgent(Agent):
 
 		actions = self.getMove(getStateRepresentation(state))
 
-		return Directions.NUMBER[actions.index(max(actions))]
+		#return Directions.NUMBER[actions.index(max(actions))]
+		return self.getDirection(state, actions)
 
 		
