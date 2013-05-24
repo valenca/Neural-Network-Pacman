@@ -26,7 +26,7 @@ class NeuralNetworkAgent(Agent):
 		self.numFiles = 0
 		self.numCases = 0
 		self.correctCases = 0
-		self.stopCondition = 0.0001
+		self.stopCondition = 0.00001
 		self.lastErrorsSize = 3
 		self.lastErrors = [1]*self.lastErrorsSize
 		self.lastErrorsIndex = 0
@@ -183,7 +183,7 @@ class NeuralNetworkAgent(Agent):
 	def loadNeuronalNetwork(self):
 		import cPickle, os
 
-		network = "network/network.iia"
+		network = "network/network_campeao.iia"
 
 		#--- Se a rede ja estiver criada, apenas le os dados ---#
 		if os.path.isfile(network):
@@ -217,7 +217,7 @@ class NeuralNetworkAgent(Agent):
 			shuffle(files)
 			for file in files:
 				self.numFiles += 1
-				self.learningFactor = 1.0*file[0]/10000
+				self.learningFactor = 1.0*file[0]/7500
 				file = file[1:]
 				shuffle(file)
 				print self.numFiles
