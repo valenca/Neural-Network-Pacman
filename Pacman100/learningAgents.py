@@ -183,7 +183,16 @@ class NeuralNetworkAgent(Agent):
 	def loadNeuronalNetwork(self):
 		import cPickle, os
 
-		network = "network/network_campeao.iia"
+		#network = "network/factor/network_0.02.iia"
+		network = "network/factor/network_0.10.iia"
+		#network = "network/factor/network_0.50.iia"
+
+		#network = "network/tests/network_2.iia"
+		#network = "network/tests/network_25.iia"
+		#network = "network/tests/network_250.iia"
+		#network = "network/tests/network_2500.iia"
+
+		network = "network/network.iia"
 
 		#--- Se a rede ja estiver criada, apenas le os dados ---#
 		if os.path.isfile(network):
@@ -195,7 +204,7 @@ class NeuralNetworkAgent(Agent):
 			fileNames = []
 			c = "Classic"
 			for i in ["human", "reactive"]:
-				for j in ["medium"+c]:
+				for j in ["contest"+c, "medium"+c, "minimax"+c, "open"+c, "original"+c, "small"+c, "test"+c, "tricky"+c]:
 					for k in ["all", "chaser", "guardian", "fearful", "default"]:
 						directory = "training/" + i + "/" + j + "/" + k
 						if os.path.isdir(directory):

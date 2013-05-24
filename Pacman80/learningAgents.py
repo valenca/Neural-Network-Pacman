@@ -183,7 +183,17 @@ class NeuralNetworkAgent(Agent):
 	def loadNeuronalNetwork(self):
 		import cPickle, os
 
-		network = "network/network_0.10.iia"
+		#network = "network/factor/network_0.02.iia"
+		network = "network/factor/network_0.10.iia"
+		#network = "network/factor/network_0.50.iia"
+
+		#network = "network/tests/network_2.iia"
+		#network = "network/tests/network_20.iia"
+		#network = "network/tests/network_200.iia"
+		#network = "network/tests/network_2000.iia"
+		#network = "network/tests/network_4940.iia"
+
+		network = "network/network.iia"
 
 		#--- Se a rede ja estiver criada, apenas le os dados ---#
 		if os.path.isfile(network):

@@ -228,7 +228,7 @@ def getStateRepresentation(state):
       z = a4[k]
       counter = 0
       for i in range(10):
-        for j in range(5):
+        for j in range(6):
           if state.hasFood(i+x, j+y):
             counter += 1
       if counter > maxi:
