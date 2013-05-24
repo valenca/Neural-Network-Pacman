@@ -13,8 +13,6 @@ Joao Valenca - 2010130607
 """
 
 from pacman import Directions, SCARED_TIME, Actions
-import layout
-import game
 from game import Agent
 from random import choice
 import util
@@ -27,6 +25,10 @@ class iiaPacmanAgent(Agent):
 		self.index = index
 		self.keys = []
 		self.trainingName = self.getTrainingName()
+
+		global trainingN
+		trainingN = self.trainingName
+
 		print "Training name:", self.trainingName
 		file = open(self.trainingName, 'w')
 		file.close()
@@ -35,10 +37,10 @@ class iiaPacmanAgent(Agent):
 		import os.path
 		name = "training_"
 		count = 1
-		while os.path.isfile("training/reactive/" + layout.lName + "/" + ghostN + "/" + name + str(count) + ".iia"):
+		while os.path.isfile("training/reactive/mediumClassic/all/" + name + str(count) + ".iia"):
 			count += 1
-		return "training/reactive/" + layout.lName + "/" + ghostN + "/" + name + str(count) + ".iia"
-	
+		return "training/reactive/mediumClassic/all/" + name + str(count) + ".iia"
+		
 	def saveTraining(self, currentStuff):
 		import cPickle
 		try:
@@ -52,6 +54,59 @@ class iiaPacmanAgent(Agent):
 		#print "Adding:", currentStuff[0]
 		cPickle.dump(oldStuff + [currentStuff], file) 
 		file.close()
+
+	def convertState(self, state, stateRepresentation):
+		from copy import copy, deepcopy
+
+		direction = state.getPacmanState().getDirection()
+		stateR = deepcopy(stateRepresentation)
+
+		pos = []
+		if direction == Directions.NORTH:
+			return stateRepresentation
+		elif direction == Directions.SOUTH:
+			pos = [4,5,6,7,0,1,2,3,12,13,14,15,8,9,10,11,20,21,22,23,16,17,18,19,26,27,24,25,30,31,28,29,34,35,32,33]
+			stateRepresentation[37] = (stateR[37] + 1) % 2
+			stateRepresentation[38] = (stateR[38] + 1) % 2
+		elif direction == Directions.EAST or direction == Directions.STOP:
+			pos = [8,9,10,11,12,13,14,15,4,5,6,7,0,1,2,3,18,19,20,21,22,23,16,17,28,29,30,31,26,27,24,25,33,34,35,32]
+			if (stateR[37] + stateR[38]) % 2 == 0:
+				stateRepresentation[37] = (stateR[37] + 1) % 2
+			else:
+				stateRepresentation[38] = (stateR[38] + 1) % 2
+		elif direction == Directions.WEST:
+			pos = [12,13,14,15,8,9,10,11,0,1,2,3,4,5,6,7,22,23,16,17,18,19,20,21,30,31,28,29,24,25,26,27,35,32,33,34]
+			if (stateR[37] + stateR[38]) % 2 == 0:
+				stateRepresentation[38] = (stateR[38] + 1) % 2
+			else:
+				stateRepresentation[37] = (stateR[37] + 1) % 2	
+
+		for i in range(36):
+			stateRepresentation[i] = stateR[pos[i]]
+
+		return stateRepresentation
+
+	def convertAction(self, state, actionRepresentation):
+		from copy import copy, deepcopy
+
+		direction = state.getPacmanState().getDirection()
+		actionR = deepcopy(actionRepresentation)
+
+		pos = []
+
+		if direction == Directions.NORTH:
+			return actionRepresentation
+		elif direction == Directions.SOUTH:
+			pos = [1, 0, 3, 2]
+		elif direction == Directions.EAST or direction == Directions.STOP:
+			pos = [2, 3, 1, 0]
+		elif direction == Directions.WEST:
+			pos = [3, 2, 0, 1]
+
+		for i in range(4):
+			actionRepresentation[i] = actionR[pos[i]]
+
+		return actionRepresentation
 
 	def getAction( self, state):
 		#from graphicsUtils import wait_for_keys
@@ -67,7 +122,7 @@ class iiaPacmanAgent(Agent):
 		
 		actionRepresentation = getActionRepresentation(move)
 		#print "Action Representation:", actionRepresentation
-		self.saveTraining([stateRepresentation, actionRepresentation])
+		self.saveTraining([self.convertState(state, stateRepresentation), self.convertAction(state, actionRepresentation)])
 		return move
 
 	def getMove(self, state, stateRepresentation):
@@ -90,14 +145,14 @@ class iiaPacmanAgent(Agent):
 		for i in range(4):
 			#Linhas
 			if Directions.NUMBER[i] in directions:
-				if stateRepresentation[8+i*2] == 1 or stateRepresentation[8+i*2+1] == 1:
+				if stateRepresentation[24+i*2] == 1 or stateRepresentation[24+i*2+1] == 1:
 					try:	 directions.remove(Directions.NUMBER[i])
-					finally: pass
+					finally: False
 			#Diagonais
 			if Directions.NUMBER2[i] in directions:
-				if stateRepresentation[8+8+i%4] == 1 or stateRepresentation[8+8+(i+1)%4] == 1:
+				if stateRepresentation[24+8+i%4] == 1 or stateRepresentation[24+8+(i+1)%4] == 1:
 					try:	 directions.remove(Directions.NUMBER2[i])
-					finally: pass
+					finally: False
 
 		if len(directions) == 0:	return choice(state.getLegalActions())
 		elif len(directions) == 1:	return directions[0]
@@ -109,7 +164,7 @@ class iiaPacmanAgent(Agent):
 		for i in range(4):
 			#Linhas 1 casa
 			if Directions.NUMBER[i] in directions and Directions.NUMBER[i] not in sgDirections:
-				if stateRepresentation[8+i*2] == -1:
+				if stateRepresentation[24+i*2] == -1:
 					sgDirections.append(Directions.NUMBER[i])
 
 		if len(sgDirections) > 0: return choice(sgDirections)
@@ -117,11 +172,11 @@ class iiaPacmanAgent(Agent):
 		for i in range(4):
 			#Linhas 2 casas
 			if Directions.NUMBER[i] in directions and Directions.NUMBER[i] not in sgDirections:
-				if stateRepresentation[8+i*2+1] == -1:
+				if stateRepresentation[24+i*2+1] == -1:
 					sgDirections.append(Directions.NUMBER[i])
 			#Diagonais
-			if Directions.NUMBER2[i] in directions and Directions.NUMBER[i] not in sgDirections:
-				if stateRepresentation[8+8+i%4] == -1 or stateRepresentation[8+8+(i+1)%4] == -1:
+			if Directions.NUMBER2[i] in directions and Directions.NUMBER2[i] not in sgDirections:
+				if stateRepresentation[24+8+i%4] == -1 or stateRepresentation[24+8+(i+1)%4] == -1:
 					sgDirections.append(Directions.NUMBER2[i])
 
 		if len(sgDirections) > 0: return choice(sgDirections)
@@ -133,9 +188,24 @@ class iiaPacmanAgent(Agent):
 			cDirections = []
 
 			for i in range(4):
+				#Linhas 1 casa
 				if Directions.NUMBER[i] in directions and Directions.NUMBER[i] not in cDirections:
-					if stateRepresentation[i*2] == 1 and stateRepresentation[i*2+1] == 1:
+					if stateRepresentation[i*4] == 1 and stateRepresentation[i*4+1] == 1:
 						cDirections.append(Directions.NUMBER[i])
+
+			if len(cDirections) > 0: return choice(cDirections)
+
+			for i in range(4):
+				#Linhas 2 casas
+				if Directions.NUMBER[i] in directions and Directions.NUMBER[i] not in cDirections:
+					if stateRepresentation[i*4+2] == 1 and stateRepresentation[i*4+3] == 1:
+						cDirections.append(Directions.NUMBER[i])
+				#Diagonais
+				if Directions.NUMBER2[i] in directions and Directions.NUMBER2[i] not in cDirections:
+					if stateRepresentation[16+(i*2)%8] == 1 and stateRepresentation[16+(i*2+1)%8] == 1:
+						cDirections.append(Directions.NUMBER2[i])
+					elif stateRepresentation[16+(i*2+2)%8] == 1 and stateRepresentation[16+(i*2+3)%8] == 1:
+						cDirections.append(Directions.NUMBER2[i])
 
 			if len(cDirections) > 0: return choice(cDirections)
 		#
@@ -144,9 +214,25 @@ class iiaPacmanAgent(Agent):
 		gDirections = []
 
 		for i in range(4):
+			#Linhas 1 casa
 			if Directions.NUMBER[i] in directions and Directions.NUMBER[i] not in gDirections:
-				if stateRepresentation[i*2] == 1 and stateRepresentation[i*2+1] == 0:
+				if stateRepresentation[i*4] == 1 and stateRepresentation[i*4+1] == 0:
 					gDirections.append(Directions.NUMBER[i])
+
+		if len(gDirections) > 0: return choice(gDirections)
+		
+		for i in range(4):
+			#Linhas 2 casas
+			if Directions.NUMBER[i] in directions and Directions.NUMBER[i] not in gDirections:
+				if stateRepresentation[i*4+2] == 1 and stateRepresentation[i*4+3] == 0:
+					gDirections.append(Directions.NUMBER[i])
+
+			#Diagonais
+			if Directions.NUMBER2[i] in directions and Directions.NUMBER2[i] not in gDirections:
+				if stateRepresentation[16+(i*2)%8] == 1 and stateRepresentation[16+(i*2+1)%8] == 0:
+					gDirections.append(Directions.NUMBER2[i])
+				elif stateRepresentation[16+(i*2+2)%8] == 1 and stateRepresentation[16+(i*2+3)%8] == 0:
+					gDirections.append(Directions.NUMBER2[i])
 
 		if len(gDirections) > 0: return choice(gDirections)
 		#
@@ -155,7 +241,7 @@ class iiaPacmanAgent(Agent):
 		finally: return choice(directions)
 
 
-class iiaGhostAgent(Agent):	 
+class iiaGhostAgent(Agent):	
 	"""Uses a strategy pattern to allow usage of different ghost behaviors in the game. 
 	The strategy must receive an agent and a GameState as the arguments.
 	To set the strategy through command line use:
@@ -165,9 +251,6 @@ class iiaGhostAgent(Agent):
 		self.index=index
 		self.xCapsule = self.yCapsule = -1
 		strategies = fnStrategy.split(';')
-
-		global ghostN
-		ghostN = "all" if len(strategies) > 1 else strategies[0]
 
 		try:
 			self.strategy = util.lookup(strategies[index%len(strategies)], globals())
@@ -184,28 +267,28 @@ def default(agent,state):
 	return choice(state.getLegalActions(agent.index))
 
 def gowest(agent,state):
-		if Directions.WEST in state.getLegalActions(agent.index):
-			return Directions.WEST
-		else:
-			return choice(state.getLegalActions(agent.index))
+	if Directions.WEST in state.getLegalActions(agent.index):
+		return Directions.WEST
+	else:
+		return choice(state.getLegalActions(agent.index))
 
 def gonorth(agent,state):
-		if Directions.NORTH in state.getLegalActions(agent.index):
-			return Directions.NORTH
-		else:
-			return choice(state.getLegalActions(agent.index))
+	if Directions.NORTH in state.getLegalActions(agent.index):
+		return Directions.NORTH
+	else:
+		return choice(state.getLegalActions(agent.index))
 
 def goeast(agent,state):
-		if Directions.EAST in state.getLegalActions(agent.index):
-			return Directions.EAST
-		else:
-			return choice(state.getLegalActions(agent.index))
+	if Directions.EAST in state.getLegalActions(agent.index):
+		return Directions.EAST
+	else:
+		return choice(state.getLegalActions(agent.index))
 
 def gosouth(agent,state):
-		if Directions.SOUTH in state.getLegalActions(agent.index):
-			return Directions.SOUTH
-		else:
-			return choice(state.getLegalActions(agent.index))
+	if Directions.SOUTH in state.getLegalActions(agent.index):
+		return Directions.SOUTH
+	else:
+		return choice(state.getLegalActions(agent.index))
 
 #Fantasma Chaser
 def chaser(agent,state,fearful=False,directions=False):
@@ -476,5 +559,3 @@ def hasPacman(state, x, y):
 	if x == state.getPacmanPosition()[0] and y == state.getPacmanPosition()[1]:
 		return True
 	return False
-
-	

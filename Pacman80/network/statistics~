@@ -1,0 +1,151 @@
+============ 0.02 ============
+
+Number of Files Trained: 3952
+Number of Cases Trained: 590605
+Minimum Training Total Error: 9.57118709091e-05
+Average Training Total Error: 0.196712531076
+
+Number of Files Validated: 988
+Number of Cases Validated: 141369
+Minimum Validation Total Error: 0.000316702190629
+Average Validation Total Error: 0.178632193031
+Number of Correct Cases: 93729
+Percentage of Correct Cases: 66.3%
+
+Pacman died! Score: 464
+Average Score: 464.0
+Scores:        464
+Win Rate:      0/1 (0.00)
+Record:        Loss
+
+real	9m16.295s
+user	8m55.225s
+sys	0m0.440s
+
+------------------------------
+
+Number of Files Trained: 3952
+Number of Cases Trained: 588429
+Minimum Training Total Error: 0.000102539536413
+Average Training Total Error: 0.197188979763
+
+Number of Files Validated: 988
+Number of Cases Validated: 143545
+Minimum Validation Total Error: 0.000445013132792
+Average Validation Total Error: 0.178400935873
+Number of Correct Cases: 94925
+Percentage of Correct Cases: 66.13%
+
+Pacman died! Score: 229
+Average Score: 229.0
+Scores:        229
+Win Rate:      0/1 (0.00)
+Record:        Loss
+
+real	8m43.438s
+user	8m23.803s
+sys	0m0.496s
+
+==============================
+
+
+============ 0.10 ============
+
+Number of Files Trained: 1388
+Number of Cases Trained: 201378
+Minimum Training Total Error: 4.82973699044e-05
+Average Training Total Error: 0.193567159206
+
+Number of Files Validated: 988
+Number of Cases Validated: 154302
+Minimum Validation Total Error: 0.000173319480517
+Average Validation Total Error: 0.194265639779
+Number of Correct Cases: 98622
+Percentage of Correct Cases: 63.91%
+
+Pacman died! Score: 476
+Average Score: 476.0
+Scores:        476
+Win Rate:      0/1 (0.00)
+Record:        Loss
+
+real	3m43.995s
+user	3m37.446s
+sys	0m0.832s
+
+------------------------------
+
+Number of Files Trained: 1751
+Number of Cases Trained: 270379
+Minimum Training Total Error: 5.23025215914e-05
+Average Training Total Error: 0.194846415893
+
+Number of Files Validated: 988
+Number of Cases Validated: 134304
+Minimum Validation Total Error: 0.000215283055996
+Average Validation Total Error: 0.188715965396
+Number of Correct Cases: 88310
+Percentage of Correct Cases: 65.75%
+
+Pacman died! Score: 545
+Average Score: 545.0
+Scores:        545
+Win Rate:      0/1 (0.00)
+Record:        Loss
+
+real	4m33.553s
+user	4m18.880s
+sys	0m0.492s
+
+==============================
+
+
+============ 0.50 ============
+
+Number of Files Trained: 137
+Number of Cases Trained: 20104
+Minimum Training Total Error: 1.96514315014e-05
+Average Training Total Error: 0.244211259402
+
+Number of Files Validated: 988
+Number of Cases Validated: 141072
+Minimum Validation Total Error: 3.70426983642e-05
+Average Validation Total Error: 0.243655319889
+Number of Correct Cases: 90908
+Percentage of Correct Cases: 64.44%
+
+Pacman died! Score: 165
+Average Score: 165.0
+Scores:        165
+Win Rate:      0/1 (0.00)
+Record:        Loss
+
+real	1m13.665s
+user	1m2.388s
+sys	0m0.428s
+
+------------------------------
+
+Number of Files Trained: 87
+Number of Cases Trained: 14788
+Minimum Training Total Error: 6.12721764129e-06
+Average Training Total Error: 0.240538850694
+
+Number of Files Validated: 988
+Number of Cases Validated: 153953
+Minimum Validation Total Error: 7.46369971413e-06
+Average Validation Total Error: 0.253133406308
+Number of Correct Cases: 93258
+Percentage of Correct Cases: 60.58%
+
+Pacman died! Score: -428
+Average Score: -428.0
+Scores:        -428
+Win Rate:      0/1 (0.00)
+Record:        Loss
+
+real	1m3.807s
+user	1m1.512s
+sys	0m0.204s
+
+==============================

@@ -20,7 +20,7 @@ class NeuralNetworkAgent(Agent):
 		self.neurons = []
 		self.weights = []
 		self.biasWeights = []
-		self.nNeurons = range(20,5,-5)
+		self.nNeurons = range(39,5,-5)
 		self.nNeurons.append(5)
 		self.percTrainingFiles = 0.8
 		self.numFiles = 0
@@ -44,7 +44,7 @@ class NeuralNetworkAgent(Agent):
 			print 
 
 	def sig(self, value):
-		return (1.0/(1.0 + self.euler**(-value)))
+		return (1.0/(1.0 + self.euler**(-max(-10, value))))
 
 	def initialization(self):
 
@@ -183,7 +183,7 @@ class NeuralNetworkAgent(Agent):
 	def loadNeuronalNetwork(self):
 		import cPickle, os
 
-		network = "network/network_0.10.iia"
+		network = "network/network_autodidact.iia"
 
 		#--- Se a rede ja estiver criada, apenas le os dados ---#
 		if os.path.isfile(network):
@@ -195,7 +195,7 @@ class NeuralNetworkAgent(Agent):
 			fileNames = []
 			c = "Classic"
 			for i in ["human", "reactive"]:
-				for j in ["contest"+c, "medium"+c, "minimax"+c, "open"+c, "original"+c, "small"+c, "test"+c, "tricky"+c]:
+				for j in ["medium"+c]:
 					for k in ["all", "chaser", "guardian", "fearful", "default"]:
 						directory = "training/" + i + "/" + j + "/" + k
 						if os.path.isdir(directory):
@@ -217,9 +217,13 @@ class NeuralNetworkAgent(Agent):
 			shuffle(files)
 			for file in files:
 				self.numFiles += 1
+				self.learningFactor = 1.0*file[0]/1000
+				file = file[1:]
 				shuffle(file)
+				print self.numFiles
 				for case in file:
 					self.numCases += 1
+					#print "ab" self.numCases
 					self.trainNeuralNetwork(case)
 					#--- Condicao de paragem ---#
 					if 1.0*sum(self.lastErrors)/len(self.lastErrors) < self.stopCondition:
@@ -252,6 +256,7 @@ class NeuralNetworkAgent(Agent):
 			shuffle(files)
 			for file in files:
 				self.numFiles += 1
+				file = file[1:]
 				shuffle(file)
 				for case in file:
 					self.numCases += 1
@@ -267,6 +272,59 @@ class NeuralNetworkAgent(Agent):
 			print
 			#
 	#
+
+	def convertState(self, state, stateRepresentation):
+		from copy import copy, deepcopy
+
+		direction = state.getPacmanState().getDirection()
+		stateR = deepcopy(stateRepresentation)
+
+		pos = []
+		if direction == Directions.NORTH:
+			return stateRepresentation
+		elif direction == Directions.SOUTH:
+			pos = [4,5,6,7,0,1,2,3,12,13,14,15,8,9,10,11,20,21,22,23,16,17,18,19,26,27,24,25,30,31,28,29,34,35,32,33]
+			stateRepresentation[37] = (stateR[37] + 1) % 2
+			stateRepresentation[38] = (stateR[38] + 1) % 2
+		elif direction == Directions.EAST or direction == Directions.STOP:
+			pos = [8,9,10,11,12,13,14,15,4,5,6,7,0,1,2,3,18,19,20,21,22,23,16,17,28,29,30,31,26,27,24,25,33,34,35,32]
+			if (stateR[37] + stateR[38]) % 2 == 0:
+				stateRepresentation[37] = (stateR[37] + 1) % 2
+			else:
+				stateRepresentation[38] = (stateR[38] + 1) % 2
+		elif direction == Directions.WEST:
+			pos = [12,13,14,15,8,9,10,11,0,1,2,3,4,5,6,7,22,23,16,17,18,19,20,21,30,31,28,29,24,25,26,27,35,32,33,34]
+			if (stateR[37] + stateR[38]) % 2 == 0:
+				stateRepresentation[38] = (stateR[38] + 1) % 2
+			else:
+				stateRepresentation[37] = (stateR[37] + 1) % 2	
+
+		for i in range(36):
+			stateRepresentation[i] = stateR[pos[i]]
+
+		return stateRepresentation
+
+	def deconvertAction(self, state, actionRepresentation):
+		from copy import copy, deepcopy
+
+		direction = state.getPacmanState().getDirection()
+		actionR = deepcopy(actionRepresentation)
+		#actionR = frente, tras, direita, esquerda, stop
+		pos = []
+
+		if direction == Directions.NORTH:
+			return actionRepresentation
+		elif direction == Directions.SOUTH:
+			pos = [1, 0, 3, 2]
+		elif direction == Directions.EAST or direction == Directions.STOP:
+			pos = [3, 2, 0, 1]
+		elif direction == Directions.WEST:
+			pos = [2, 3, 1, 0]
+
+		for i in range(4):
+			actionRepresentation[i] = actionR[pos[i]]
+
+		return actionRepresentation
 		
 	def getMove(self, stateRepresentation):
 
@@ -311,7 +369,10 @@ class NeuralNetworkAgent(Agent):
 
 		self.loadNeuronalNetwork()
 
-		actions = self.getMove(getStateRepresentation(state))
+		actions = self.getMove(self.convertState(state, getStateRepresentation(state)))
+		actions = self.deconvertAction(state, actions)
+		print self.weights[0][37]
+		print self.weights[0][38]
 
 		return Directions.NUMBER[actions.index(max(actions))]
 		#return self.getDirection(state, actions)

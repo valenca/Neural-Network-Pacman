@@ -1,0 +1,48 @@
+===============================
+
+Number of Files Trained: 2
+Number of Cases Trained: 262
+Minimum Training Total Error: 0.270901661386
+Average Training Total Error: 0.430640431803
+
+Exception: Illegal action North
+
+===============================
+
+Number of Files Trained: 20
+Number of Cases Trained: 2437
+Minimum Training Total Error: 0.083638518461
+Average Training Total Error: 0.361955767453
+
+Exception: Illegal action East
+
+===============================
+
+Number of Files Trained: 200
+Number of Cases Trained: 25590
+Minimum Training Total Error: 0.000281328249438
+Average Training Total Error: 0.204469042567
+
+Pacman died! Score: -42
+
+===============================
+
+Number of Files Trained: 2000
+Number of Cases Trained: 297182
+Minimum Training Total Error: 3.88075041915e-05
+Average Training Total Error: 0.197430618523
+
+Pacman died! Score: 711
+
+===============================
+
+Number of Files Trained: 4940
+Number of Cases Trained: 731974
+Minimum Training Total Error: 2.95035417553e-05
+Average Training Total Error: 0.190199835434
+
+Pacman died! Score: 295
+
+
+Pacman emerges victorious! Score: 2034
+

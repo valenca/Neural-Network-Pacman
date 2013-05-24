@@ -1,0 +1,65 @@
+============ 0.02 ============
+
+
+
+------------------------------
+
+
+
+==============================
+
+
+============ 0.10 ============
+
+
+
+------------------------------
+
+
+
+==============================
+
+
+============ 0.50 ============
+
+Number of Files Trained: 175
+Number of Cases Trained: 23504
+Minimum Training Total Error: 4.90299516498e-05
+Average Training Total Error: 0.237696102257
+
+Number of Files Validated: 988
+Number of Cases Validated: 137124
+Minimum Validation Total Error: 5.61008482771e-05
+Average Validation Total Error: 0.219463042958
+Number of Correct Cases: 87922
+Percentage of Correct Cases: 64.12%
+
+real	1m8.232s
+user	1m3.832s
+sys	0m0.292s
+
+------------------------------
+
+Number of Files Trained: 73
+Number of Cases Trained: 9165
+Minimum Training Total Error: 4.55832916223e-05
+Average Training Total Error: 0.244406490118
+
+Number of Files Validated: 988
+Number of Cases Validated: 150499
+Minimum Validation Total Error: 0.000207166414385
+Average Validation Total Error: 0.221026232716
+Number of Correct Cases: 96347
+Percentage of Correct Cases: 64.02%
+
+Pacman died! Score: -410
+Average Score: -410.0
+Scores:        -410
+Win Rate:      0/1 (0.00)
+Record:        Loss
+
+real	1m0.518s
+user	0m57.968s
+sys	0m0.272s
+
+==============================
