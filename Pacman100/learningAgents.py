@@ -20,13 +20,13 @@ class NeuralNetworkAgent(Agent):
 		self.neurons = []
 		self.weights = []
 		self.biasWeights = []
-		self.nNeurons = range(39,5,-5)
+		self.nNeurons = range(39,5,-15)
 		self.nNeurons.append(5)
 		self.percTrainingFiles = 0.8
 		self.numFiles = 0
 		self.numCases = 0
 		self.correctCases = 0
-		self.stopCondition = 0.0000001
+		self.stopCondition = 0.0001
 		self.lastErrorsSize = 3
 		self.lastErrors = [1]*self.lastErrorsSize
 		self.lastErrorsIndex = 0
@@ -44,7 +44,7 @@ class NeuralNetworkAgent(Agent):
 			print 
 
 	def sig(self, value):
-		return (1.0/(1.0 + self.euler**(-max(-10, value))))
+		return (1.0/(1.0 + self.euler**(-value)))
 
 	def initialization(self):
 
@@ -183,7 +183,7 @@ class NeuralNetworkAgent(Agent):
 	def loadNeuronalNetwork(self):
 		import cPickle, os
 
-		network = "network/network_autodidact.iia"
+		network = "network/network.iia"
 
 		#--- Se a rede ja estiver criada, apenas le os dados ---#
 		if os.path.isfile(network):
@@ -217,13 +217,12 @@ class NeuralNetworkAgent(Agent):
 			shuffle(files)
 			for file in files:
 				self.numFiles += 1
-				self.learningFactor = 1.0*file[0]/1000
+				self.learningFactor = 1.0*file[0]/10000
 				file = file[1:]
 				shuffle(file)
 				print self.numFiles
 				for case in file:
 					self.numCases += 1
-					#print "ab" self.numCases
 					self.trainNeuralNetwork(case)
 					#--- Condicao de paragem ---#
 					if 1.0*sum(self.lastErrors)/len(self.lastErrors) < self.stopCondition:
@@ -309,9 +308,8 @@ class NeuralNetworkAgent(Agent):
 
 		direction = state.getPacmanState().getDirection()
 		actionR = deepcopy(actionRepresentation)
-		#actionR = frente, tras, direita, esquerda, stop
-		pos = []
 
+		pos = []
 		if direction == Directions.NORTH:
 			return actionRepresentation
 		elif direction == Directions.SOUTH:
@@ -370,9 +368,9 @@ class NeuralNetworkAgent(Agent):
 		self.loadNeuronalNetwork()
 
 		actions = self.getMove(self.convertState(state, getStateRepresentation(state)))
+		print self.convertState(state, getStateRepresentation(state))
 		actions = self.deconvertAction(state, actions)
-		print self.weights[0][37]
-		print self.weights[0][38]
+		print actions
 
 		return Directions.NUMBER[actions.index(max(actions))]
 		#return self.getDirection(state, actions)

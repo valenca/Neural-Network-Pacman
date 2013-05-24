@@ -26,7 +26,7 @@ class NeuralNetworkAgent(Agent):
 		self.numFiles = 0
 		self.numCases = 0
 		self.correctCases = 0
-		self.stopCondition = 0.0000001
+		self.stopCondition = 0.0001
 		self.lastErrorsSize = 3
 		self.lastErrors = [1]*self.lastErrorsSize
 		self.lastErrorsIndex = 0

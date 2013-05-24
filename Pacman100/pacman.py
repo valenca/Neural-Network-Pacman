@@ -300,7 +300,10 @@ class ClassicGameRules:
     try:
       tN = iiaAgents.trainingN
     except:
-      tN = keyboardAgents.trainingN
+      try:
+        tN = keyboardAgents.trainingN
+      except:
+        return
 
     if state.data.score <= 0:
       os.remove(tN)
@@ -328,7 +331,10 @@ class ClassicGameRules:
     try:
       tN = iiaAgents.trainingN
     except:
-      tN = keyboardAgents.trainingN
+      try:
+        tN = keyboardAgents.trainingN
+      except:
+        return
 
     if state.data.score <= 0:
       os.remove(tN)
