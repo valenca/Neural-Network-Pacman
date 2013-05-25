@@ -88,11 +88,11 @@ Average Validation Total Error: 0.0623043875792
 Number of Correct Cases: 62244
 Percentage of Correct Cases: 89.15%
 
-Pacman died! Score: 992
-Average Score: 992.0
-Scores:        992
-Win Rate:      0/1 (0.00)
-Record:        Loss
+Pacman emerges victorious! Score: 1918
+Average Score: 1918.0
+Scores:        1918
+Win Rate:      1/1 (1.00)
+Record:        Win
 
 real	8m3.920s
 user	7m43.197s

@@ -232,7 +232,7 @@ class NeuralNetworkAgent(Agent):
 			shuffle(files)
 			for file in files:
 				self.numFiles += 1
-				self.learningFactor = 1.0*file[0]/10000
+				#self.learningFactor = 1.0*file[0]/10000
 				file = file[1:]
 				shuffle(file)
 				for case in file:

@@ -52,12 +52,27 @@ sys	0m0.568s
 
 ============ 0.10 ============
 
-Pacman died! Score: 1034
-Average Score: 1034.0
-Scores:        1034
+Number of Files Trained: 1129
+Number of Cases Trained: 156290
+Minimum Training Total Error: 7.70946830891e-06
+Average Training Total Error: 0.0754372159018
+
+Number of Files Validated: 500
+Number of Cases Validated: 70947
+Minimum Validation Total Error: 1.71221804469e-05
+Average Validation Total Error: 0.0618446689525
+Number of Correct Cases: 63259
+Percentage of Correct Cases: 89.16%
+
+Pacman died! Score: 1019
+Average Score: 1019.0
+Scores:        1019
 Win Rate:      0/1 (0.00)
 Record:        Loss
 
+real	7m45.506s
+user	7m34.624s
+sys	0m0.384s
 
 ------------------------------
 
