@@ -16,6 +16,7 @@ Alexandre Jesus - 2010130268
 Gustavo Martins - 2010131414
 Joao Valenca - 2010130607
 """
+"""Linhas 546 - 566"""
 
 """
 Pacman.py holds the logic for the classic pacman game along with the main

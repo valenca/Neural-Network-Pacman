@@ -6,6 +6,14 @@
 # John DeNero (denero@cs.berkeley.edu) and Dan Klein (klein@cs.berkeley.edu).
 # For more info, see http://inst.eecs.berkeley.edu/~cs188/sp09/pacman.html
 
+"""
+Alterado por
+Alexandre Jesus - 2010130268
+Gustavo Martins - 2010131414
+Joao Valenca - 2010130607
+"""
+"""Linhas 33 - 36"""
+
 from util import manhattanDistance
 from game import Grid
 import os
@@ -21,6 +29,12 @@ class Layout:
   def __init__(self, layoutText):
     self.width = len(layoutText[0])
     self.height= len(layoutText)
+
+    global lW
+    lW = self.width
+    global lH
+    lH = self.height
+
     self.walls = Grid(self.width, self.height, False)
     self.food = Grid(self.width, self.height, False)
     self.capsules = []

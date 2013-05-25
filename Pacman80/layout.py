@@ -12,6 +12,7 @@ Alexandre Jesus - 2010130268
 Gustavo Martins - 2010131414
 Joao Valenca - 2010130607
 """
+"""Linhas 138 - 139"""
 
 from util import manhattanDistance
 from game import Grid

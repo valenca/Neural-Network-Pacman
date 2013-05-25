@@ -1,0 +1,47 @@
+Number of Files Trained: 636
+Number of Cases Trained: 87281
+Minimum Training Total Error: 8.31412151418e-06
+Average Training Total Error: 0.0847591112839
+
+Number of Files Validated: 500
+Number of Cases Validated: 71200
+Minimum Validation Total Error: 3.11032180664e-05
+Average Validation Total Error: 0.0708184949043
+Number of Correct Cases: 63024
+Percentage of Correct Cases: 88.52%
+
+Pacman died! Score: 277
+Average Score: 277.0
+Scores:        277
+Win Rate:      0/1 (0.00)
+Record:        Loss
+
+real	4m33.727s
+user	4m24.921s
+sys	0m0.308s
+
+------------------------------
+
+Number of Files Trained: 1528
+Number of Cases Trained: 212344
+Minimum Training Total Error: 9.08680438232e-06
+Average Training Total Error: 0.0757772217745
+
+Number of Files Validated: 500
+Number of Cases Validated: 70262
+Minimum Validation Total Error: 1.32868851762e-05
+Average Validation Total Error: 0.0736284703048
+Number of Correct Cases: 62208
+Percentage of Correct Cases: 88.54%
+
+Pacman emerges victorious! Score: 2072
+Average Score: 2072.0
+Scores:        2072
+Win Rate:      1/1 (1.00)
+Record:        Win
+
+real	9m15.535s
+user	9m7.742s
+sys	0m0.332s
+
+

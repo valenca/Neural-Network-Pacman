@@ -12,6 +12,7 @@ Alexandre Jesus - 2010130268
 Gustavo Martins - 2010131414
 Joao Valenca - 2010130607
 """
+"""Linhas 77 - 246"""
 
 import sys
 import inspect
@@ -216,8 +217,10 @@ def getStateRepresentation(state):
     toAdd2 = 0
     maxi = 0
 
-    a1 = [0, 0, 10, 10]
-    a2 = [0, 5, 0, 5]
+    import layout
+
+    a1 = [0, 0, layout.lW/2, layout.lW/2]
+    a2 = [0, layout.lH/2, 0, layout.lH/2]
     a3 = [0, 0, 1, 1]
     a4 = [0, 1, 0, 1]
 
@@ -227,8 +230,8 @@ def getStateRepresentation(state):
       w = a3[k]
       z = a4[k]
       counter = 0
-      for i in range(10):
-        for j in range(6):
+      for i in range(int(round(layout.lW/2.0,0))):
+        for j in range(int(round(layout.lH/2.0,0))):
           if state.hasFood(i+x, j+y):
             counter += 1
       if counter > maxi:

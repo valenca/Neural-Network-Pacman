@@ -12,6 +12,7 @@ Alexandre Jesus - 2010130268
 Gustavo Martins - 2010131414
 Joao Valenca - 2010130607
 """
+"""Linhas 62 - 72"""
 
 from util import *
 import time, os

@@ -10,6 +10,8 @@ Alexandre Jesus - 2010130268
 Gustavo Martins - 2010131414
 Joao Valenca - 2010130607
 """
+"""Linhas 111 - 113"""
+"""Linhas 129 - 180"""
 
 from game import Agent, Directions
 from random import choice

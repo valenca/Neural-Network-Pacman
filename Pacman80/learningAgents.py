@@ -43,6 +43,7 @@ class NeuralNetworkAgent(Agent):
 				print round(self.neurons[i][j], 3),
 			print 
 
+	#Funcao sigmoide
 	def sig(self, value):
 		return (1.0/(1.0 + self.euler**(-value)))
 
@@ -184,7 +185,7 @@ class NeuralNetworkAgent(Agent):
 		import cPickle, os
 
 		#network = "network/factor/network_0.02.iia"
-		network = "network/factor/network_0.10.iia"
+		#network = "network/factor/network_0.10.iia"
 		#network = "network/factor/network_0.50.iia"
 
 		#network = "network/tests/network_2.iia"

@@ -20,9 +20,9 @@ class NeuralNetworkAgent(Agent):
 		self.neurons = []
 		self.weights = []
 		self.biasWeights = []
-		self.nNeurons = range(39,5,-15)
+		self.nNeurons = range(39,5,-12)
 		self.nNeurons.append(5)
-		self.percTrainingFiles = 0.8
+		self.percTrainingFiles = 1
 		self.numFiles = 0
 		self.numCases = 0
 		self.correctCases = 0
@@ -43,6 +43,7 @@ class NeuralNetworkAgent(Agent):
 				print round(self.neurons[i][j], 3),
 			print 
 
+	#Funcao sigmoide
 	def sig(self, value):
 		return (1.0/(1.0 + self.euler**(-value)))
 
@@ -184,13 +185,18 @@ class NeuralNetworkAgent(Agent):
 		import cPickle, os
 
 		#network = "network/factor/network_0.02.iia"
-		network = "network/factor/network_0.10.iia"
+		#network = "network/factor/network_0.10.iia"
 		#network = "network/factor/network_0.50.iia"
 
 		#network = "network/tests/network_2.iia"
 		#network = "network/tests/network_25.iia"
 		#network = "network/tests/network_250.iia"
 		#network = "network/tests/network_2500.iia"
+
+		#network = "network/dfactor/network.iia"
+
+		#network = "network/network_campeao.iia"	#range(39, 5, -15)
+		#network = "network/network_diabo.iia"		#range(39, 5, -15)
 
 		network = "network/network.iia"
 
@@ -226,10 +232,9 @@ class NeuralNetworkAgent(Agent):
 			shuffle(files)
 			for file in files:
 				self.numFiles += 1
-				self.learningFactor = 1.0*file[0]/7500
+				self.learningFactor = 1.0*file[0]/10000
 				file = file[1:]
 				shuffle(file)
-				print self.numFiles
 				for case in file:
 					self.numCases += 1
 					self.trainNeuralNetwork(case)
@@ -252,7 +257,7 @@ class NeuralNetworkAgent(Agent):
 			self.writeNetwork(network)
 			#
 
-			print
+			"""print
 
 			#--- Validacao da rede neuronal ---#
 			self.numFiles = 0
@@ -278,7 +283,7 @@ class NeuralNetworkAgent(Agent):
 			print "Percentage of Correct Cases:", str(round(1.0*self.correctCases/self.numCases*100, 2)) + "%"
 
 			print
-			#
+			#"""
 	#
 
 	def convertState(self, state, stateRepresentation):
@@ -377,9 +382,7 @@ class NeuralNetworkAgent(Agent):
 		self.loadNeuronalNetwork()
 
 		actions = self.getMove(self.convertState(state, getStateRepresentation(state)))
-		print self.convertState(state, getStateRepresentation(state))
 		actions = self.deconvertAction(state, actions)
-		print actions
 
 		return Directions.NUMBER[actions.index(max(actions))]
 		#return self.getDirection(state, actions)
